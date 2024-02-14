@@ -1,0 +1,164 @@
+.main-container {
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: url(../assets/wengang-zhai-BFB7ydn1-DI-unsplash.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+ 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.pharmacy-form {
+	flex-basis: 35%;
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	gap: 0.6rem;
+	margin-left: 1rem;
+	border-radius: 1rem;
+	background-color: white;
+}
+
+.pharmacy-form input {
+	height: 2rem;
+	width: 90%;
+	padding: 0 0.6rem;
+	border-radius: 0.25rem;
+	border: 0.5px solid grey;
+}
+
+.medicine-type {
+	height: 2rem;
+	width: 90%;
+	border-radius: 0.25rem;
+	padding: 0 0.5rem;
+}
+
+.submit-button {
+	margin-top: 1rem;
+	width: 10rem;
+	height: 2rem;
+	color: #1B5679;
+	border: 2px solid #1B5679;
+	border-radius: 0.25rem;
+}
+
+.submit-button:hover {
+	transition: all .3s ease;
+	color: white;
+	background-color: #1B5679;
+}
+
+.submit-button:active {
+	transition: none;
+	background-color: #439CD4;
+	border: none;
+}
+
+
+/* ------------------------------------------------------------------------------------- */
+
+.pharmacy-list {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 65%;
+	height: 100%;
+	background-color: none;
+}
+
+.select-list-button-container {
+	flex-basis: 14%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+}
+
+.display-medicine-container {
+	flex-basis: 86%;
+	padding: 0 1rem;
+}
+
+.display-tablet-medicine {
+	display: none;
+}
+
+.display-capsule-medicine {
+	display: none;
+}
+
+.display-topical-medicine {
+	display: none;
+}
+
+.render-liquids-button, .render-tablets-button, .render-capsules-button, .render-topicals-button {
+	width: 12rem;
+	height: 2rem;
+	border-radius: 0.25rem;
+	font-size: small;
+	font-weight: bold;
+	background-color: #1B5679;
+	color: white;
+	margin: 0 0.5rem;
+}
+
+.render-liquids-button:hover, .render-tablets-button:hover, .render-capsules-button:hover, .render-topicals-button:hover {
+	background-color: #439CD4;
+
+}
+
+.render-liquids-button--active, .render-tablets-button--active, .render-capsules-button--active, .render-topicals-button--active {
+	width: 12rem;
+	height: 2rem;
+	border-radius: 0.25rem;
+	background-color: white;
+	color: #1B5679;
+	border: 2px solid #1B5679;
+	font-size: small;
+	font-weight: bold;
+	margin: 0 0.5rem;
+}
+
+.liquid-medicine-header, .tablet-medicine-header, .capsule-medicine-header, .topical-medicine-header {
+	display: flex;
+	height: 2.5rem;
+	border-radius: 0.5rem;
+	background-color: azure;
+	margin-bottom: 0.5rem;
+}
+
+.liquid-medicine-header span {
+	flex-basis: 16%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.tablet-medicine-header span {
+	flex-basis: 16%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.capsule-medicine-header span {
+	flex-basis: 16%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.topical-medicine-header span {
+	flex-basis: 16%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+

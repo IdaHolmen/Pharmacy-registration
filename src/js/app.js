@@ -198,8 +198,10 @@ class UI {
 				const renderedDate = document.createElement('span');
 				const renderedQuantity = document.createElement('span');
 				const renderedType = document.createElement('span');
+
 				const deleteButtonContainer = document.createElement('span');
 				const deleteButton = document.createElement('button');
+				const trashCan = document.createElement('img');
 
 				renderedName.textContent = liquid.name;
 				renderedID.textContent = liquid.id;
@@ -208,15 +210,18 @@ class UI {
 				renderedQuantity.textContent = liquid.quantity;
 				renderedType.textContent = liquid.type;
 				deleteButton.textContent = '';
+				trashCan.src = `./assets/trash-sharp-regular.svg`;
 
 				listRow.classList.add('liquid-medicine-row');
 				deleteButton.classList.add('delete-button');
+				trashCan.classList.add('trash-can-image');
 
 				listRow.dataset.id = liquid.ID;
 
 				liquidsUl.append(listRow);
 				listRow.append(renderedName, renderedID, renderedManufacturer, renderedDate, renderedQuantity, renderedType, deleteButtonContainer);
 				deleteButtonContainer.append(deleteButton);
+				deleteButton.append(trashCan);
 
 				deleteButton.addEventListener('click', (e) => {
 					const rowID = e.currentTarget.parentElement.parentElement.dataset.id;
@@ -247,6 +252,7 @@ class UI {
 				const renderedType = document.createElement('span');
 				const deleteButtonContainer = document.createElement('span');
 				const deleteButton = document.createElement('button');
+				const trashCan = document.createElement('img');
 
 				renderedName.textContent = tablet.name;
 				renderedID.textContent = tablet.id;
@@ -255,15 +261,18 @@ class UI {
 				renderedQuantity.textContent = tablet.quantity;
 				renderedType.textContent = tablet.type;
 				deleteButton.textContent = '';
+				trashCan.src = `./assets/trash-sharp-regular.svg`;
 
 				listRow.classList.add('tablet-medicine-row');
 				deleteButton.classList.add('delete-button');
+				trashCan.classList.add('trash-can-image');
 
 				listRow.dataset.id = tablet.ID;
 
 				tabletsUl.append(listRow);
 				listRow.append(renderedName, renderedID, renderedManufacturer, renderedDate, renderedQuantity, renderedType, deleteButtonContainer);
 				deleteButtonContainer.append(deleteButton);
+				deleteButton.append(trashCan);
 
 				deleteButton.addEventListener('click', (e) => {
 					const rowID = e.currentTarget.parentElement.parentElement.dataset.id;
@@ -292,6 +301,7 @@ class UI {
 				const renderedType = document.createElement('span');
 				const deleteButtonContainer = document.createElement('span');
 				const deleteButton = document.createElement('button');
+				const trashCan = document.createElement('img');
 
 				renderedName.textContent = capsule.name;
 				renderedID.textContent = capsule.id;
@@ -300,15 +310,18 @@ class UI {
 				renderedQuantity.textContent = capsule.quantity;
 				renderedType.textContent = capsule.type;
 				deleteButton.textContent = '';
+				trashCan.src = `./assets/trash-sharp-regular.svg`;
 
 				listRow.classList.add('capsule-medicine-row');
 				deleteButton.classList.add('delete-button');
+				trashCan.classList.add('trash-can-image');
 
 				listRow.dataset.id = capsule.ID;
 
 				capsulesUl.append(listRow);
 				listRow.append(renderedName, renderedID, renderedManufacturer, renderedDate, renderedQuantity, renderedType, deleteButtonContainer);
 				deleteButtonContainer.append(deleteButton);
+				deleteButton.append(trashCan);
 
 				deleteButton.addEventListener('click', (e) => {
 					const rowID = e.currentTarget.parentElement.parentElement.dataset.id;
@@ -337,6 +350,7 @@ class UI {
 				const renderedType = document.createElement('span');
 				const deleteButtonContainer = document.createElement('span');
 				const deleteButton = document.createElement('button');
+				const trashCan = document.createElement('img');
 
 				renderedName.textContent = topical.name;
 				renderedID.textContent = topical.id;
@@ -345,15 +359,18 @@ class UI {
 				renderedQuantity.textContent = topical.quantity;
 				renderedType.textContent = topical.type;
 				deleteButton.textContent = '';
+				trashCan.src = `./assets/trash-sharp-regular.svg`;
 
 				listRow.classList.add('topical-medicine-row');
 				deleteButton.classList.add('delete-button');
+				trashCan.classList.add('trash-can-image');
 
 				listRow.dataset.id = topical.ID;
 
 				topicalsUl.append(listRow);
 				listRow.append(renderedName, renderedID, renderedManufacturer, renderedDate, renderedQuantity, renderedType, deleteButtonContainer);
 				deleteButtonContainer.append(deleteButton);
+				deleteButton.append(trashCan);
 
 				deleteButton.addEventListener('click', (e) => {
 					const rowID = e.currentTarget.parentElement.parentElement.dataset.id;

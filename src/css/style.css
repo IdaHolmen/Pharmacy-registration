@@ -133,7 +133,6 @@
 	font-weight: bold;
 	height: 2.5rem;
 	border-radius: 0.5rem;
-	background-color: azure;
 	margin-bottom: 0.5rem;
 }
 
@@ -165,13 +164,12 @@
 	align-items: center;
 }
 
-
 .liquid-medicine-row {
 	display: flex;
-	height: 2rem;
+	height: 2.5rem;
 	margin-bottom: 0.5rem;
 	border-radius: 0.5rem;
-	background-color: bisque;
+	background-color: #ffffffde;
 }
 
 .liquid-medicine-row span {
@@ -183,10 +181,10 @@
 
 .tablet-medicine-row {
 	display: flex;
-	height: 2rem;
+	height: 2.5rem;
 	margin-bottom: 0.5rem;
 	border-radius: 0.5rem;
-	background-color: bisque;
+	background-color: #ffffffde;
 }
 
 .tablet-medicine-row span {
@@ -198,10 +196,10 @@
 
 .capsule-medicine-row {
 	display: flex;
-	height: 2rem;
+	height: 2.5rem;
 	margin-bottom: 0.5rem;
 	border-radius: 0.5rem;
-	background-color: bisque;
+	background-color: #ffffffde;
 }
 
 .capsule-medicine-row span {
@@ -213,10 +211,10 @@
 
 .topical-medicine-row {
 	display: flex;
-	height: 2rem;
+	height: 2.5rem;
 	margin-bottom: 0.5rem;
 	border-radius: 0.5rem;
-	background-color: bisque;
+	background-color: #ffffffde;
 }
 
 .topical-medicine-row span {
@@ -227,9 +225,34 @@
 }
 
 .delete-button {
-	height: 1rem;
-	width: 1rem;
-	background-color: red;
+	position: relative;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	border: 2px solid rgb(231, 50, 50);
+	background-color: #fff;
+	overflow: hidden;
+	transition: .3s;
 }
+
+.delete-button:hover {
+	background-color: rgb(245, 207, 207);
+    transform: scale(1.1);
+    transition: .2s;
+}
+
+.trash-can-image {
+	color: rgb(231, 50, 50);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: .2s;
+}
+
+
+
+
+
 
 

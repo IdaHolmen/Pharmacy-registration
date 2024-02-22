@@ -11,8 +11,8 @@
 }
 
 .pharmacy-form {
-	flex-basis: 35%;
-	height: 80%;
+	flex-basis: 25%;
+	height: 90%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -27,7 +27,7 @@
 .pharmacy-form input {
 	height: 2rem;
 	width: 90%;
-	padding: 0 0.6rem;
+	padding: 0 0.3rem;
 	border-radius: 0.25rem;
 	border: 0.5px solid grey;
 }
@@ -66,7 +66,7 @@
 .pharmacy-list {
 	display: flex;
 	flex-direction: column;
-	flex-basis: 65%;
+	flex-basis: 75%;
 	height: 100%;
 	background-color: none;
 }
@@ -126,6 +126,7 @@
 
 .liquid-medicine-header, .tablet-medicine-header, .capsule-medicine-header, .topical-medicine-header {
 	display: flex;
+	font-weight: bold;
 	height: 2.5rem;
 	border-radius: 0.5rem;
 	background-color: azure;
@@ -133,32 +134,98 @@
 }
 
 .liquid-medicine-header span {
-	flex-basis: 16%;
+	flex-basis: 14%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 .tablet-medicine-header span {
-	flex-basis: 16%;
+	flex-basis: 14%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 .capsule-medicine-header span {
-	flex-basis: 16%;
+	flex-basis: 14%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 .topical-medicine-header span {
-	flex-basis: 16%;
+	flex-basis: 14%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
+
+.liquid-medicine-row {
+	display: flex;
+	height: 2rem;
+	margin-bottom: 0.5rem;
+	border-radius: 0.5rem;
+	background-color: bisque;
+}
+
+.liquid-medicine-row span {
+	flex-basis: 14%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.tablet-medicine-row {
+	display: flex;
+	height: 2rem;
+	margin-bottom: 0.5rem;
+	border-radius: 0.5rem;
+	background-color: bisque;
+}
+
+.tablet-medicine-row span {
+	flex-basis: 14%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.capsule-medicine-row {
+	display: flex;
+	height: 2rem;
+	margin-bottom: 0.5rem;
+	border-radius: 0.5rem;
+	background-color: bisque;
+}
+
+.capsule-medicine-row span {
+	flex-basis: 14%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.topical-medicine-row {
+	display: flex;
+	height: 2rem;
+	margin-bottom: 0.5rem;
+	border-radius: 0.5rem;
+	background-color: bisque;
+}
+
+.topical-medicine-row span {
+	flex-basis: 14%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.delete-button {
+	height: 1rem;
+	width: 1rem;
+	background-color: red;
+}
 
 

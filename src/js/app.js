@@ -80,42 +80,37 @@ pharmacyForm.addEventListener('submit', (e)=> {
 renderLiquidMedicineButton.addEventListener('click', ()=> {
 	UI.activeTab = 'liquid';
 	UI.renderLiquids(liquids);
+	removeActiveClasses()
 	renderLiquidMedicineButton.classList.add('render-liquids-button--active');
-
-	if (UI.activeTab !== 'liquid') {
-		renderLiquidMedicineButton.classList.remove('render-liquids-button--active');
-	}
 })
 
 renderTabletMedicineButton.addEventListener('click', ()=> {
 	UI.activeTab = 'tablet';
 	UI.renderTablets(tablets);
+	removeActiveClasses()
 	renderTabletMedicineButton.classList.add('render-tablets-button--active');
-
-	if (UI.activeTab !== 'tablet') {
-		renderTabletMedicineButton.classList.remove('render-tablets-button--active');
-	}
 })
 
 renderCapsuleMedicineButton.addEventListener('click', ()=> {
 	UI.activeTab = 'capsule';
 	UI.renderCapsules(capsules);
+	removeActiveClasses()
 	renderCapsuleMedicineButton.classList.add('render-capsules-button--active');
-
-	if (UI.activeTab !== 'capsule') {
-		renderCapsuleMedicineButton.classList.remove('render-capsules-button--active');
-	}
 })
 
 renderTopicalMedicineButton.addEventListener('click', ()=> {
 	UI.activeTab = 'topical';
 	UI.renderTopicals(topicals);
+	removeActiveClasses()
 	renderTopicalMedicineButton.classList.add('render-topicals-button--active');
-
-	if (UI.activeTab !== 'topical') {
-		renderTopicalMedicineButton.classList.remove('render-topicals-button--active');
-	}
 })
+
+const removeActiveClasses = () => {
+	renderLiquidMedicineButton.classList.remove('render-liquids-button--active');
+    renderTabletMedicineButton.classList.remove('render-tablets-button--active');
+    renderCapsuleMedicineButton.classList.remove('render-capsules-button--active');
+	renderTopicalMedicineButton.classList.remove('render-topicals-button--active');
+}
 
 //DECLARING THE LIQUID MEDICINE CLASS
 class Liquid {

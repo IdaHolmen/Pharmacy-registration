@@ -5,7 +5,10 @@ const capsules = [];
 const topicals = [];
 
 //SELECTING THE ELEMENTS FROM THE DOM
+const mainContainer = document.querySelector('.main-container');
 const pharmacyForm = document.querySelector('.pharmacy-form');
+const pharmacyList = document.querySelector('.pharmacy-list');
+const headerText = document.querySelector('.header-text');
 
 const productName = document.querySelector('.product-name');
 const id = document.querySelector('.product-id');
@@ -14,10 +17,10 @@ const date = document.querySelector('.expiration-date');
 const quantity = document.querySelector('.quantity');
 const selectElement = document.querySelector('.medicine-type');
 
-const liquidsUl = document.querySelector('.liquid-medicine-list');
-const tabletsUl = document.querySelector('.tablet-medicine-list');
-const capsulesUl = document.querySelector('.capsule-medicine-list');
-const topicalsUl = document.querySelector('.topical-medicine-list');
+const liquidsContainer = document.querySelector('.display-liquids-info');
+const tabletsContainer = document.querySelector('.display-tablets-info');
+const capsulesContainer = document.querySelector('.display-capsules-info');
+const topicalsContainer = document.querySelector('.display-topicals-info');
 
 
 const displayLiquidMedicineContainer = document.querySelector('.display-liquid-medicine');
@@ -30,8 +33,36 @@ const renderTabletMedicineButton = document.querySelector('.render-tablets-butto
 const renderCapsuleMedicineButton = document.querySelector('.render-capsules-button');
 const renderTopicalMedicineButton = document.querySelector('.render-topicals-button');
 
+const navigateToRegistrationButton = document.querySelector('.navigate-to-form-button');
+const navigateToDisplayPageButton = document.querySelector('.navigate-to-display-button');
+
 
 //ADDING EVENT LISTENERS
+navigateToRegistrationButton.addEventListener('click', (e)=> {
+	e.preventDefault();
+	navigateToRegistrationButton.classList.add('navigate-to-form-button--active');
+
+	navigateToDisplayPageButton.classList.remove('navigate-to-display-button--active');
+
+	mainContainer.style.backgroundColor = '#d0f4de';
+	pharmacyForm.style.display = 'flex';
+	pharmacyList.style.display = 'none';
+	headerText.textContent = 'Ready to Register some Medicines?';
+});
+
+navigateToDisplayPageButton.addEventListener('click', (e)=> {
+	e.preventDefault();
+	navigateToDisplayPageButton.classList.add('navigate-to-display-button--active');
+
+	navigateToRegistrationButton.classList.remove('navigate-to-form-button--active');
+
+	mainContainer.style.backgroundColor = '#a9def9';
+	pharmacyForm.style.display = 'none';
+	pharmacyList.style.display = 'flex';
+	headerText.textContent = 'Medicines';
+});
+
+
 pharmacyForm.addEventListener('submit', (e)=> {
 	e.preventDefault();
 	let newMedicine;
@@ -186,12 +217,13 @@ class UI {
 		displayCapsuleMedicineContainer.style.display = 'none';
 		displayTopicalMedicineContainer.style.display = 'none';
 		
-		displayLiquidMedicineContainer.style.display = 'block';
-		liquidsUl.textContent = '';
+		displayLiquidMedicineContainer.style.display = 'flex';
+		liquidsContainer.style.display = 'flex';
+		liquidsContainer.textContent = '';
 		if (UI.activeTab === 'liquid') {
 
 			liquids.forEach((liquid) => {
-				const listRow = document.createElement('li');
+				const listDiv = document.createElement('div');
 				const renderedName = document.createElement('span');
 				const renderedID = document.createElement('span');
 				const renderedManufacturer = document.createElement('span');
@@ -199,29 +231,37 @@ class UI {
 				const renderedQuantity = document.createElement('span');
 				const renderedType = document.createElement('span');
 
-				const deleteButtonContainer = document.createElement('span');
+				const buttonContainer = document.createElement('div');
 				const deleteButton = document.createElement('button');
 				const trashCan = document.createElement('img');
+				const updateButton = document.createElement('button');
+				const penImage = document.createElement('img');
 
-				renderedName.textContent = liquid.name;
-				renderedID.textContent = liquid.id;
-				renderedManufacturer.textContent = liquid.manufacturer;
-				renderedDate.textContent = liquid.date;
-				renderedQuantity.textContent = liquid.quantity;
-				renderedType.textContent = liquid.type;
-				deleteButton.textContent = '';
+				renderedName.textContent = `Product name: ${liquid.name}`;
+				renderedID.textContent = `Product ID: ${liquid.id}`;
+				renderedManufacturer.textContent = `Manufacturer: ${liquid.manufacturer}`;
+				renderedDate.textContent = `Expiration date: ${liquid.date}`;
+				renderedQuantity.textContent = `Quantity: ${liquid.quantity}`;
+				renderedType.textContent = `Type of medicine: ${liquid.type}`;
+				updateButton.textContent = 'Update';
+				penImage.src = `./assets/pen-sharp-regular.svg`;
+				deleteButton.textContent = 'Delete';
 				trashCan.src = `./assets/trash-sharp-regular.svg`;
 
-				listRow.classList.add('liquid-medicine-row');
+				listDiv.classList.add('liquid-medicine-div');
+				buttonContainer.classList.add('delete-button-container');
 				deleteButton.classList.add('delete-button');
 				trashCan.classList.add('trash-can-image');
+				updateButton.classList.add('update-button');
+				penImage.classList.add('pen-image');
 
-				listRow.dataset.id = liquid.ID;
+				listDiv.dataset.id = liquid.ID;
 
-				liquidsUl.append(listRow);
-				listRow.append(renderedName, renderedID, renderedManufacturer, renderedDate, renderedQuantity, renderedType, deleteButtonContainer);
-				deleteButtonContainer.append(deleteButton);
+				liquidsContainer.append(listDiv, buttonContainer);
+				listDiv.append(renderedName, renderedID, renderedManufacturer, renderedDate, renderedQuantity, renderedType);
+				buttonContainer.append(updateButton, deleteButton);
 				deleteButton.append(trashCan);
+				updateButton.append(penImage);
 
 				deleteButton.addEventListener('click', (e) => {
 					const rowID = e.currentTarget.parentElement.parentElement.dataset.id;
@@ -234,45 +274,57 @@ class UI {
 
 	//--------------------------------------------------------------------
 	static renderTablets(tablets) {
-		tabletsUl.textContent = '';
+
+		tabletsContainer.textContent = '';
 		displayLiquidMedicineContainer.style.display = 'none';
 		displayCapsuleMedicineContainer.style.display = 'none';
 		displayTopicalMedicineContainer.style.display = 'none';
 
-		displayTabletMedicineContainer.style.display = 'block';
+		displayTabletMedicineContainer.style.display = 'flex';
+		tabletsContainer.style.display = 'flex';
+		tabletsContainer.textContent = '';
 
 		if(UI.activeTab === 'tablet'){
 			tablets.forEach(tablet => {
-				const listRow = document.createElement('li');
+				const listDiv = document.createElement('div');
 				const renderedName = document.createElement('span');
 				const renderedID = document.createElement('span');
 				const renderedManufacturer = document.createElement('span');
 				const renderedDate = document.createElement('span');
 				const renderedQuantity = document.createElement('span');
 				const renderedType = document.createElement('span');
+
 				const deleteButtonContainer = document.createElement('span');
 				const deleteButton = document.createElement('button');
 				const trashCan = document.createElement('img');
+				const updateButton = document.createElement('button');
+				const penImage = document.createElement('img');
 
-				renderedName.textContent = tablet.name;
-				renderedID.textContent = tablet.id;
-				renderedManufacturer.textContent = tablet.manufacturer;
-				renderedDate.textContent = tablet.date;
-				renderedQuantity.textContent = tablet.quantity;
-				renderedType.textContent = tablet.type;
-				deleteButton.textContent = '';
+				renderedName.textContent = `Product name: ${tablet.name}`;
+				renderedID.textContent = `Product ID: ${tablet.id}`;
+				renderedManufacturer.textContent = `Manufacturer: ${tablet.manufacturer}`;
+				renderedDate.textContent = `Expiration date: ${tablet.date}`;
+				renderedQuantity.textContent = `Quantity: ${tablet.quantity}`;
+				renderedType.textContent = `Type of medicine: ${tablet.type}`;
+				updateButton.textContent = 'Update';
+				penImage.src = `./assets/pen-sharp-regular.svg`;
+				deleteButton.textContent = 'Delete';
 				trashCan.src = `./assets/trash-sharp-regular.svg`;
 
-				listRow.classList.add('tablet-medicine-row');
+				listDiv.classList.add('tablet-medicine-div');
+				deleteButtonContainer.classList.add('delete-button-container');
 				deleteButton.classList.add('delete-button');
 				trashCan.classList.add('trash-can-image');
+				updateButton.classList.add('update-button');
+				penImage.classList.add('pen-image');
 
-				listRow.dataset.id = tablet.ID;
+				listDiv.dataset.id = tablet.ID;
 
-				tabletsUl.append(listRow);
-				listRow.append(renderedName, renderedID, renderedManufacturer, renderedDate, renderedQuantity, renderedType, deleteButtonContainer);
-				deleteButtonContainer.append(deleteButton);
+				tabletsContainer.append(listDiv, deleteButtonContainer);
+				listDiv.append(renderedName, renderedID, renderedManufacturer, renderedDate, renderedQuantity, renderedType);
+				deleteButtonContainer.append(updateButton, deleteButton);
 				deleteButton.append(trashCan);
+				updateButton.append(penImage);
 
 				deleteButton.addEventListener('click', (e) => {
 					const rowID = e.currentTarget.parentElement.parentElement.dataset.id;
@@ -283,45 +335,56 @@ class UI {
 	}
 	//--------------------------------------------------------------------
 	static renderCapsules(capsules) {
-		capsulesUl.textContent = '';
+		capsulesContainer.textContent = '';
 		displayLiquidMedicineContainer.style.display = 'none';
 		displayTabletMedicineContainer.style.display = 'none';
 		displayTopicalMedicineContainer.style.display = 'none';
 
-		displayCapsuleMedicineContainer.style.display = 'block';
+		displayCapsuleMedicineContainer.style.display = 'flex';
+		capsulesContainer.style.display = 'flex';
+		capsulesContainer.textContent = '';
 
 		if(UI.activeTab === 'capsule'){
 			capsules.forEach(capsule => {
-				const listRow = document.createElement('li');
+				const listDiv = document.createElement('div');
 				const renderedName = document.createElement('span');
 				const renderedID = document.createElement('span');
 				const renderedManufacturer = document.createElement('span');
 				const renderedDate = document.createElement('span');
 				const renderedQuantity = document.createElement('span');
 				const renderedType = document.createElement('span');
+
 				const deleteButtonContainer = document.createElement('span');
 				const deleteButton = document.createElement('button');
 				const trashCan = document.createElement('img');
+				const updateButton = document.createElement('button');
+				const penImage = document.createElement('img');
 
-				renderedName.textContent = capsule.name;
-				renderedID.textContent = capsule.id;
-				renderedManufacturer.textContent = capsule.manufacturer;
-				renderedDate.textContent = capsule.date;
-				renderedQuantity.textContent = capsule.quantity;
-				renderedType.textContent = capsule.type;
-				deleteButton.textContent = '';
+				renderedName.textContent = `Product name: ${capsule.name}`;
+				renderedID.textContent = `Product ID: ${capsule.id}`;
+				renderedManufacturer.textContent = `Manufacturer: ${capsule.manufacturer}`;
+				renderedDate.textContent = `Expiration date: ${capsule.date}`;
+				renderedQuantity.textContent = `Quantity: ${capsule.quantity}`;
+				renderedType.textContent = `Type of medicine: ${capsule.type}`;
+				updateButton.textContent = 'Update';
+				penImage.src = `./assets/pen-sharp-regular.svg`;
+				deleteButton.textContent = 'Delete';
 				trashCan.src = `./assets/trash-sharp-regular.svg`;
 
-				listRow.classList.add('capsule-medicine-row');
+				listDiv.classList.add('capsule-medicine-div');
+				deleteButtonContainer.classList.add('delete-button-container');
 				deleteButton.classList.add('delete-button');
 				trashCan.classList.add('trash-can-image');
+				updateButton.classList.add('update-button');
+				penImage.classList.add('pen-image');
 
-				listRow.dataset.id = capsule.ID;
+				listDiv.dataset.id = capsule.ID;
 
-				capsulesUl.append(listRow);
-				listRow.append(renderedName, renderedID, renderedManufacturer, renderedDate, renderedQuantity, renderedType, deleteButtonContainer);
-				deleteButtonContainer.append(deleteButton);
+				capsulesContainer.append(listDiv, deleteButtonContainer);
+				listDiv.append(renderedName, renderedID, renderedManufacturer, renderedDate, renderedQuantity, renderedType);
+				deleteButtonContainer.append(updateButton, deleteButton);
 				deleteButton.append(trashCan);
+				updateButton.append(penImage);
 
 				deleteButton.addEventListener('click', (e) => {
 					const rowID = e.currentTarget.parentElement.parentElement.dataset.id;
@@ -332,16 +395,18 @@ class UI {
 	}		
 	//--------------------------------------------------------------------
 	static renderTopicals(topicals) {
-		topicalsUl.textContent = '';
+		topicalsContainer.textContent = '';
 		displayLiquidMedicineContainer.style.display = 'none';
 		displayTabletMedicineContainer.style.display = 'none';
 		displayCapsuleMedicineContainer.style.display = 'none';
 
-		displayTopicalMedicineContainer.style.display = 'block';
+		displayTopicalMedicineContainer.style.display = 'flex';
+		topicalsContainer.style.display = 'flex';
+		topicalsContainer.textContent = '';
 
 		if(UI.activeTab === 'topical'){
 			topicals.forEach(topical => {
-				const listRow = document.createElement('li');
+				const listDiv = document.createElement('div');
 				const renderedName = document.createElement('span');
 				const renderedID = document.createElement('span');
 				const renderedManufacturer = document.createElement('span');
@@ -351,26 +416,34 @@ class UI {
 				const deleteButtonContainer = document.createElement('span');
 				const deleteButton = document.createElement('button');
 				const trashCan = document.createElement('img');
+				const updateButton = document.createElement('button');
+				const penImage = document.createElement('img');
 
-				renderedName.textContent = topical.name;
-				renderedID.textContent = topical.id;
-				renderedManufacturer.textContent = topical.manufacturer;
-				renderedDate.textContent = topical.date;
-				renderedQuantity.textContent = topical.quantity;
-				renderedType.textContent = topical.type;
-				deleteButton.textContent = '';
+				renderedName.textContent = `Product name: ${topical.name}`;
+				renderedID.textContent = `Product ID: ${topical.id}`;
+				renderedManufacturer.textContent = `Manufacturer: ${topical.manufacturer}`;
+				renderedDate.textContent = `Expiration date: ${topical.date}`;
+				renderedQuantity.textContent = `Quantity: ${topical.quantity}`;
+				renderedType.textContent = `Type of medicine: ${topical.type}`;
+				updateButton.textContent = 'Update';
+				penImage.src = `./assets/pen-sharp-regular.svg`;
+				deleteButton.textContent = 'Delete';
 				trashCan.src = `./assets/trash-sharp-regular.svg`;
 
-				listRow.classList.add('topical-medicine-row');
+				listDiv.classList.add('topical-medicine-div');
+				deleteButtonContainer.classList.add('delete-button-container');
 				deleteButton.classList.add('delete-button');
 				trashCan.classList.add('trash-can-image');
+				updateButton.classList.add('update-button');
+				penImage.classList.add('pen-image');
 
-				listRow.dataset.id = topical.ID;
+				listDiv.dataset.id = topical.ID;
 
-				topicalsUl.append(listRow);
-				listRow.append(renderedName, renderedID, renderedManufacturer, renderedDate, renderedQuantity, renderedType, deleteButtonContainer);
-				deleteButtonContainer.append(deleteButton);
+				topicalsContainer.append(listDiv, deleteButtonContainer);
+				listDiv.append(renderedName, renderedID, renderedManufacturer, renderedDate, renderedQuantity, renderedType);
+				deleteButtonContainer.append(updateButton, deleteButton);
 				deleteButton.append(trashCan);
+				updateButton.append(penImage);
 
 				deleteButton.addEventListener('click', (e) => {
 					const rowID = e.currentTarget.parentElement.parentElement.dataset.id;

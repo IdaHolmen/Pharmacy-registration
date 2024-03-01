@@ -9,21 +9,42 @@
 	<link rel="stylesheet" href="../src/css/style.css">
 </head>
 <body>
+	<!-- HEADER -->
+	<header class="navigation-header">
+		<section class="headline-section">
+			<h2 class="header-text">Ready to Register some Medicines?</h2>
+		</section>
+		<div class="navigation-button-container">
+			<button class="navigate-to-form-button navigation-button navigate-to-form-button--active">Register Medicines</button>
+			<button class="navigate-to-display-button navigation-button">Display Medicine List</button>
+		</div>
+	</header>
+
 	<div class="main-container">
+		
 		<!-- FORM SECTION -->
 		<form class="pharmacy-form">
-			<h2>Ready to Register some Medicines?</h2>
-
+			
 			<label for="product-name">Product Name *</label>
 			<input type="text" name="product-name" class="product-name" required>
+			<label for="form-error-message" class="form-error-message">Please fill in the missing information</label>
+
 			<label for="product-id">Product ID *</label>
 			<input type="text" name="product-id" class="product-id" required>
+			<label for="form-error-message" class="form-error-message">Please fill in the missing information</label>
+
 			<label for="manufacturer">Manufacturer *</label>
 			<input type="text" name="manufacturer" class="manufacturer" required>
+			<label for="form-error-message" class="form-error-message">Please fill in the missing information</label>
+
 			<label for="expiration-date">Expiration Date *</label>
 			<input type="date" name="expiration-date" class="expiration-date" required>
+			<label for="form-error-message" class="form-error-message">Please fill in the missing information</label>
+
 			<label for="quantity">Quantity *</label>
 			<input type="number" name="quantity" class="quantity" required>
+			<label for="form-error-message" class="form-error-message">Please fill in the missing information</label>
+
 			<label for="medicine-type">Medicine Type *</label>
 			<select name="medicine-type" class="medicine-type" required>
 				<option value="liquid">Liquid</option>
@@ -46,67 +67,27 @@
 			<div class="display-medicine-container">
 
 				<div class="display-liquid-medicine">
-					<header class="liquid-medicine-header">
-						<span>Name</span>
-						<span>ID</span>
-						<span>Manufacturer</span>
-						<span>Date</span>
-						<span>Quantity</span>
-						<span>Type</span>
-						<span></span>
-					</header>
-					<ul class="liquid-medicine-list">
-
-
-					</ul>
+					<div class="display-liquids-info">
+						
+					</div>
 				</div>
 
 				<div class="display-tablet-medicine">
-					<header class="tablet-medicine-header">
-						<span>Name</span>
-						<span>ID</span>
-						<span>Manufacturer</span>
-						<span>Date</span>
-						<span>Quantity</span>
-						<span>Type</span>
-						<span></span>
-					</header>
-					<ul class="tablet-medicine-list">
+					<div class="display-tablets-info">
 
-
-					</ul>
+					</div>
 				</div>
 
 				<div class="display-capsule-medicine">
-					<header class="capsule-medicine-header">
-						<span>Name</span>
-						<span>ID</span>
-						<span>Manufacturer</span>
-						<span>Date</span>
-						<span>Quantity</span>
-						<span>Type</span>
-						<span></span>
-					</header>
-					<ul class="capsule-medicine-list">
+					<div class="display-capsules-info">
 
-
-					</ul>
+					</div>
 				</div>
 
 				<div class="display-topical-medicine">
-					<header class="topical-medicine-header">
-						<span>Name</span>
-						<span>ID</span>
-						<span>Manufacturer</span>
-						<span>Date</span>
-						<span>Quantity</span>
-						<span>Type</span>
-						<span></span>
-					</header>
-					<ul class="topical-medicine-list">
+					<div class="display-topicals-info">
 
-
-					</ul>
+					</div>
 				</div>
 			</div>
 		</section>

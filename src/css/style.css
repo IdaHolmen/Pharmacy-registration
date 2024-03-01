@@ -1,26 +1,83 @@
-.main-container {
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+/*BACKGROUND*/
+body {
 	height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	font-family: "Lato", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.main-container {
+	flex-basis: 85%;
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-image: url(../assets/wengang-zhai-BFB7ydn1-DI-unsplash.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
- 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+	background-color: #d0f4de;
 }
 
+/* HEADER */
+.navigation-header {
+	flex-basis: 15%;
+	width: 100%;
+}
+
+.headline-section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #1d3557;
+	color: white;
+	height: 50%;
+}
+
+.navigation-button-container {
+	display: flex;
+	font-weight: bold;
+	height: 50%;
+}
+
+.navigation-button {
+	background-color: #fff;
+	border-left: 0.5px solid grey;
+}
+
+.navigation-button:hover {
+	background-color: rgb(224, 224, 224);
+}
+
+.navigate-to-form-button {
+	flex-basis: 50%;
+}
+ 
+.navigate-to-form-button--active,
+.navigate-to-form-button--active:hover {
+	background-color: #d0f4de;
+}
+
+.navigate-to-display-button {
+	flex-basis: 50%;
+}
+
+.navigate-to-display-button--active,
+.navigate-to-display-button--active:hover {
+	background-color: #a9def9;
+}
+
+/* REGISTRATION FORM */
 .pharmacy-form {
-	flex-basis: 25%;
-	height: 90%;
+	flex-basis: 45%;
+	height: 95%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	text-align: center;
-	gap: 0.6rem;
+	gap: 0.3rem;
 	margin-left: 1rem;
-	border-radius: 1rem;
+	border-radius: 0.25rem;
 	background-color: white;
 }
 
@@ -30,6 +87,12 @@
 	padding: 0 0.3rem;
 	border-radius: 0.25rem;
 	border: 0.5px solid grey;
+}
+
+.form-error-message {
+	font-size: 0.8rem;
+	color: red;
+	visibility: hidden;
 }
 
 .medicine-type {
@@ -43,15 +106,15 @@
 	margin-top: 1rem;
 	width: 10rem;
 	height: 2rem;
-	color: #1B5679;
-	border: 2px solid #1B5679;
+	color: #1d3557;
+	border: 2px solid #1d3557;
 	border-radius: 0.25rem;
 }
 
 .submit-button:hover {
 	transition: all .2s ease;
 	color: white;
-	background-color: #1B5679;
+	background-color: #1d3557;
 }
 
 .submit-button:active {
@@ -62,175 +125,131 @@
 
 
 /* ------------------------------------------------------------------------------------- */
-
+/* DISPLAY PAGE */
 .pharmacy-list {
 	display: flex;
 	flex-direction: column;
-	flex-basis: 75%;
+	align-items: center;
+	justify-content: center;
+	flex-basis: 65%;
 	height: 100%;
-	background-color: none;
+	display: none;
 }
 
 .select-list-button-container {
 	flex-basis: 14%;
+	width: 90%;
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	gap: 2rem;
 }
 
 .display-medicine-container {
 	flex-basis: 86%;
+	width: 100%;
 	padding: 0 1rem;
+	display: flex;
+	justify-content: center;	
 }
 
-.display-tablet-medicine {
-	display: none;
-}
-
-.display-capsule-medicine {
-	display: none;
-}
-
+.display-liquid-medicine, 
+.display-tablet-medicine,
+.display-capsule-medicine,
 .display-topical-medicine {
+	width: 100%;
 	display: none;
+	justify-content: center;
 }
 
-.render-liquids-button, .render-tablets-button, .render-capsules-button, .render-topicals-button {
+.display-liquids-info, 
+.display-tablets-info,
+.display-capsules-info,
+.display-topicals-info {
+	display: none;
+	width: 90%;
+	height: 10rem;
+	background: rgba(255, 255, 255, 0.798);
+	border-radius: 0.25rem;
+}
+
+.render-liquids-button, 
+.render-tablets-button, 
+.render-capsules-button, 
+.render-topicals-button {
 	width: 12rem;
 	height: 2rem;
 	border-radius: 0.25rem;
 	font-size: small;
 	font-weight: bold;
-	background-color: #1B5679;
+	background-color: #1d3557;
 	color: white;
 	margin: 0 0.5rem;
 }
 
-.render-liquids-button:hover, .render-tablets-button:hover, .render-capsules-button:hover, .render-topicals-button:hover {
+.render-liquids-button:hover, 
+.render-tablets-button:hover, 
+.render-capsules-button:hover, 
+.render-topicals-button:hover {
 	background-color: #439CD4;
-
 }
 
-.render-liquids-button--active, .render-tablets-button--active, .render-capsules-button--active, .render-topicals-button--active {
+.render-liquids-button--active, 
+.render-tablets-button--active, 
+.render-capsules-button--active, 
+.render-topicals-button--active {
 	width: 12rem;
 	height: 2rem;
 	border-radius: 0.25rem;
 	background-color: white;
-	color: #1B5679;
-	border: 2px solid #1B5679;
+	color: #1d3557;
+	border: 2px solid #1d3557;
 	font-size: small;
 	font-weight: bold;
 	margin: 0 0.5rem;
 }
 
-.render-liquids-button--active:hover, .render-tablets-button--active:hover, .render-capsules-button--active:hover, .render-topicals-button--active:hover {
+.render-liquids-button--active:hover, 
+.render-tablets-button--active:hover, 
+.render-capsules-button--active:hover, 
+.render-topicals-button--active:hover {
 	background-color: white;
 }
 
-.liquid-medicine-header, .tablet-medicine-header, .capsule-medicine-header, .topical-medicine-header {
+
+/* HER SKAL ALLE TEKSTELEMENTER*/
+.liquid-medicine-div, 
+.tablet-medicine-div, 
+.capsule-medicine-div, 
+.topical-medicine-div {
 	display: flex;
-	font-weight: bold;
-	height: 2.5rem;
-	border-radius: 0.5rem;
+	flex-direction: column;
+	height: 100%;
+	flex-basis: 80%;
 	margin-bottom: 0.5rem;
+	padding: 0 0.5rem;
+	font-size: 1.1rem;
 }
 
-.liquid-medicine-header span {
-	flex-basis: 14%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
 
-.tablet-medicine-header span {
-	flex-basis: 14%;
+/* STYLING FOR THE UPDATE AND DELETE BUTTON */
+.delete-button-container {
+	flex-basis: 20%;
 	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.capsule-medicine-header span {
-	flex-basis: 14%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.topical-medicine-header span {
-	flex-basis: 14%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.liquid-medicine-row {
-	display: flex;
-	height: 2.5rem;
-	margin-bottom: 0.5rem;
-	border-radius: 0.5rem;
-	background-color: #ffffffde;
-}
-
-.liquid-medicine-row span {
-	flex-basis: 14%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.tablet-medicine-row {
-	display: flex;
-	height: 2.5rem;
-	margin-bottom: 0.5rem;
-	border-radius: 0.5rem;
-	background-color: #ffffffde;
-}
-
-.tablet-medicine-row span {
-	flex-basis: 14%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.capsule-medicine-row {
-	display: flex;
-	height: 2.5rem;
-	margin-bottom: 0.5rem;
-	border-radius: 0.5rem;
-	background-color: #ffffffde;
-}
-
-.capsule-medicine-row span {
-	flex-basis: 14%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.topical-medicine-row {
-	display: flex;
-	height: 2.5rem;
-	margin-bottom: 0.5rem;
-	border-radius: 0.5rem;
-	background-color: #ffffffde;
-}
-
-.topical-medicine-row span {
-	flex-basis: 14%;
-	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: space-evenly;
 	align-items: center;
 }
 
 .delete-button {
 	position: relative;
-	width: 2rem;
+	width: 6rem;
 	height: 2rem;
-	border-radius: 50%;
+	border-radius: 0.25rem;
 	border: 2px solid rgb(231, 50, 50);
 	background-color: #fff;
+	color: rgb(231, 50, 50);
+	padding-right: 0.8rem;
 	overflow: hidden;
 	transition: .3s;
 }
@@ -242,13 +261,44 @@
 }
 
 .trash-can-image {
+	max-width: 1rem;
 	color: rgb(231, 50, 50);
     position: absolute;
     top: 50%;
-    left: 50%;
+	right: 0;
     transform: translate(-50%, -50%);
     transition: .2s;
 }
+
+.update-button {
+	position: relative;
+	width: 6rem;
+	height: 2rem;
+	border-radius: 0.25rem;
+	border: 2px solid rgb(56, 138, 38);
+	background-color: #fff;
+	color: rgb(56, 138, 38);
+	padding-right: 0.8rem;
+	overflow: hidden;
+	transition: .3s;
+}
+
+.update-button:hover {
+	background-color: rgb(216, 255, 207);
+    transform: scale(1.1);
+    transition: .2s;
+}
+
+.pen-image {
+	max-width: 1rem;
+	color: rgb(56, 138, 38);
+    position: absolute;
+    top: 50%;
+	right: 0;
+    transform: translate(-50%, -50%);
+    transition: .2s;
+}
+
 
 
 

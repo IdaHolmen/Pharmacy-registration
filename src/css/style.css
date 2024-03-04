@@ -153,24 +153,30 @@ body {
 	justify-content: center;	
 }
 
-.display-liquid-medicine, 
-.display-tablet-medicine,
-.display-capsule-medicine,
-.display-topical-medicine {
+.display-medicine {
 	width: 100%;
-	display: none;
-	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
 }
 
-.display-liquids-info, 
-.display-tablets-info,
-.display-capsules-info,
-.display-topicals-info {
-	display: none;
+.display-info {
 	width: 90%;
 	height: 10rem;
+	display: flex;
 	background: rgba(255, 255, 255, 0.798);
 	border-radius: 0.25rem;
+}
+
+.medicine-div {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	flex-basis: 80%;
+	margin-bottom: 0.5rem;
+	padding: 0 0.5rem;
+	font-size: 1.1rem;
 }
 
 .render-liquids-button, 
@@ -216,24 +222,8 @@ body {
 	background-color: white;
 }
 
-
-/* HER SKAL ALLE TEKSTELEMENTER*/
-.liquid-medicine-div, 
-.tablet-medicine-div, 
-.capsule-medicine-div, 
-.topical-medicine-div {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	flex-basis: 80%;
-	margin-bottom: 0.5rem;
-	padding: 0 0.5rem;
-	font-size: 1.1rem;
-}
-
-
 /* STYLING FOR THE UPDATE AND DELETE BUTTON */
-.delete-button-container {
+.button-container {
 	flex-basis: 20%;
 	display: flex;
 	flex-direction: column;
@@ -298,11 +288,4 @@ body {
     transform: translate(-50%, -50%);
     transition: .2s;
 }
-
-
-
-
-
-
-
 

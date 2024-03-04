@@ -1,4 +1,4 @@
-// Local storage
+// LOCAL STORAGE
 const saveToLocalStorage = (key, value) => {
 	localStorage.setItem(key, JSON.stringify(value));
 }
@@ -38,6 +38,7 @@ const navigateToDisplayPageButton = document.querySelector('.navigate-to-display
 
 
 //ADDING EVENT LISTENERS
+
 navigateToRegistrationButton.addEventListener('click', (e)=> {
 	e.preventDefault();
 	navigateToRegistrationButton.classList.add('navigate-to-form-button--active');
@@ -110,7 +111,6 @@ pharmacyForm.addEventListener('submit', (e)=> {
 	console.log(newMedicine);
 });
 
-// EVT LAGE GENERISK FOR EACH FOR BUTTONS
 
 renderLiquidMedicineButton.addEventListener('click', ()=> {
 	UI.activeTab = 'liquid';
@@ -128,14 +128,14 @@ renderTabletMedicineButton.addEventListener('click', ()=> {
 
 renderCapsuleMedicineButton.addEventListener('click', ()=> {
 	UI.activeTab = 'capsule';
-	UI.renderMedicines(medicines, 'Capsule medicines');
+	UI.renderMedicines(medicines, 'Capsule Medicines');
 	removeActiveClasses()
 	renderCapsuleMedicineButton.classList.add('render-capsules-button--active');
 })
 
 renderTopicalMedicineButton.addEventListener('click', ()=> {
 	UI.activeTab = 'topical';
-	UI.renderMedicines(medicines, 'Topical medicines');
+	UI.renderMedicines(medicines, 'Topical Medicines');
 	removeActiveClasses()
 	renderTopicalMedicineButton.classList.add('render-topicals-button--active');
 })
@@ -148,7 +148,6 @@ const removeActiveClasses = () => {
 }
 
 // DECLARING THE MEDICINE CLASS
-// EASIER TO READ WHEN THE FIRST CLASS IS MEDICINES
 class Medicine {
 	constructor(name, id, manufacturer, date, quantity, type){
 		this.name = name;
@@ -173,7 +172,7 @@ class Medicine {
 	}
 }
 
-//DECLARING THE TABLET CLASS
+//DECLARING THE LIQUID CLASS
 class Liquid extends Medicine {
 	constructor(name, id, manufacturer, date, quantity, type){
 		super(name, id, manufacturer, date, quantity, type);
@@ -212,22 +211,24 @@ const removeAllChildNodes = (parent) => {
 	}
 }
 
-
-
 // DECLARE THE UI CLASS
 class UI {
 	static activeTab = 'liquid';
 	static renderMedicines(medicines, title) {
 	
+		// REMOVING ALL ELEMENTS FROM THE CONTAINER THAT DISPLAYS THE MEDICINES
 		removeAllChildNodes(displayMedicine)
 
-		const relevantMedicines = medicines.filter(medicine => medicine.type === UI.activeTab);
-				if (title) {
-					const pageTitle = document.createElement('h3');
-					pageTitle.textContent = `${title} (${relevantMedicines.length})`;
-					pageTitle.style.display = 'block';
-				}
 
+		const relevantMedicines = medicines.filter(medicine => medicine.type === UI.activeTab);
+		// WORKING ON CREATING AN ELEMENT ON TOP THAT SHOW HOW MANY MEDICINES ARE IN THE ARRAY
+		if (title) {
+			const pageTitle = document.createElement('h3');
+			pageTitle.textContent = `${title} (${relevantMedicines.length})`;
+			pageTitle.style.display = 'block';
+		}
+
+		// IF THE MEDICINES ARE EMPTY
 		if (!relevantMedicines.length) {
 			emptyContentContainer.style.display = 'block';
 			emptyContentContainer.textContent = 'No medicines to show.';
@@ -238,6 +239,7 @@ class UI {
 		emptyContentContainer.style.display ='none';
 
 		relevantMedicines.forEach(medicine => {
+			// CREATING THE ELEMENTS
 			const displayMedicineInfo = document.createElement('div');
 			const listDiv = document.createElement('div');
 			const renderedName = document.createElement('span');
@@ -253,6 +255,7 @@ class UI {
 			const updateButton = document.createElement('button');
 			const penImage = document.createElement('img');
 
+			// SETTING THE CONTENT
 			renderedName.textContent = `Product name: ${medicine.name}`;
 			renderedID.textContent = `Product ID: ${medicine.id}`;
 			renderedManufacturer.textContent = `Manufacturer: ${medicine.manufacturer}`;
@@ -264,6 +267,7 @@ class UI {
 			deleteButton.textContent = 'Delete';
 			trashCan.src = `./assets/trash-sharp-regular.svg`;
 
+			// ADDING THE CLASSES
 			displayMedicineInfo.classList.add('display-info');
 			listDiv.classList.add('medicine-div');
 			buttonContainer.classList.add('button-container');
@@ -282,6 +286,7 @@ class UI {
 			deleteButton.append(trashCan);
 			updateButton.append(penImage);
 
+			// DELETE BUTTON
 			deleteButton.addEventListener('click', (e) => {
 				e.preventDefault()
 				const rowID = medicine.ID;
@@ -290,3 +295,45 @@ class UI {
 		});	
 	}
 }
+
+lkjsdflk
+
+// //SELECTING THE ERROR ELEMENT
+// const nameErrorElement = document.querySelector('.name-error-message');
+// const idErrorElement = document.querySelector('.id-error-message');
+// const manufacturerErrorElement = document.querySelector('.manufacturer-error-message');
+// const dateErrorElement = document.querySelector('.date-error-message');
+// const quantityErrorElement = document.querySelector('.quantity-error-message');
+
+// // FORM VALIDATION
+// const validateMedicineForm = (name, id, manufacturer, date, quantity, nameErrorElement, idErrorElement, manufacturerErrorElement, dateErrorElement, quantityErrorElement) => {
+// 	const errors = {
+// 		errorStatus: false, 
+// 		nameError: '',
+// 		idError: '',
+// 		manufacturerError: '',
+// 		dateError: '',
+// 		quantityError: '',
+// 	}
+
+// 	if (!name && !id && !manufacturer && !date && !quantity) {
+// 		errors.errorStatus = true,
+// 		errors.nameError = 'Product name is required ⚠️',
+// 		errors.idError = 'Product ID is required ⚠️',
+// 		errors.manufacturerError = 'Manufacturer is required ⚠️',
+// 		errors.dateError = 'Expiration date is required ⚠️',
+// 		errors.quantityError = 'Quanitity is required ⚠️',
+
+// 		nameErrorElement.style.visibility = 'visible';
+// 		idErrorElement.style.visibility = 'visible';
+// 		manufacturerErrorElement.style.visibility = 'visible';
+// 		dateErrorElement.style.visibility = 'visible';
+// 		quantityErrorElement.style.visibility = 'visible';
+
+// 		nameErrorElement.textContent = errors.nameError;
+// 		idErrorElement.textContent = errors.idError;
+// 		manufacturerErrorElement.textContent = errors.manufacturerError;
+// 		dateErrorElement.textContent = errors.dateError;
+// 		quantityErrorElement.textContent = errors.quantityError
+// 	}
+// }

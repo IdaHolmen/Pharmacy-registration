@@ -89,7 +89,11 @@ body {
 	border: 0.5px solid grey;
 }
 
-.form-error-message {
+.name-error-message,
+.id-error-message,
+.manufacturer-error-message,
+.date-error-message,
+.quantity-error-message {
 	font-size: 0.8rem;
 	color: red;
 	visibility: hidden;

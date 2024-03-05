@@ -18,7 +18,6 @@ const pharmacyList = document.querySelector('.pharmacy-list');
 const headerText = document.querySelector('.header-text');
 
 const productName = document.querySelector('.product-name');
-const id = document.querySelector('.product-id');
 const manufacturer = document.querySelector('.manufacturer');
 const date = document.querySelector('.expiration-date');
 const quantity = document.querySelector('.quantity');
@@ -68,47 +67,51 @@ navigateToDisplayPageButton.addEventListener('click', (e)=> {
 
 pharmacyForm.addEventListener('submit', (e)=> {
 	e.preventDefault();
-	let newMedicine;
-	if(selectElement.value === 'liquid') {
+
+	const validationResult = validateMedicineForm(productName.value, manufacturer.value, date.value,quantity.value, nameErrorElement, manufacturerErrorElement, dateErrorElement, quantityErrorElement);
+
+	if (!validationResult.medicineFormStatus()) {
+		let newMedicine;
+
+		if(selectElement.value === 'liquid') {
 		newMedicine = new Liquid (
 			productName.value,
-			id.value,
 			manufacturer.value,
 			date.value,
 			quantity.value, 
 			selectElement.value
 		);
-	} else if(selectElement.value === 'tablet') {
+		} else if(selectElement.value === 'tablet') {
 		newMedicine = new Tablet (
 			productName.value,
-			id.value,
 			manufacturer.value,
 			date.value,
 			quantity.value, 
 			selectElement.value
 		);
-	} else if (selectElement.value === 'capsule'){
+		} else if (selectElement.value === 'capsule'){
 		newMedicine = new Capsule (
 			productName.value,
-			id.value,
 			manufacturer.value,
 			date.value,
 			quantity.value, 
 			selectElement.value
 		);
-	} else {
+		} else {
 		newMedicine = new Topical (
 			productName.value,
-			id.value,
 			manufacturer.value,
 			date.value,
 			quantity.value, 
 			selectElement.value
 		);
+		}
+		Liquid.addMedicine(newMedicine);
+		console.log(newMedicine);
+		pharmacyForm.reset();
+	} else {
+		console.log('Form validation failed.');
 	}
-	Liquid.addMedicine(newMedicine);
-	pharmacyForm.reset();
-	console.log(newMedicine);
 });
 
 
@@ -149,9 +152,8 @@ const removeActiveClasses = () => {
 
 // DECLARING THE MEDICINE CLASS
 class Medicine {
-	constructor(name, id, manufacturer, date, quantity, type){
+	constructor(name, manufacturer, date, quantity, type){
 		this.name = name;
-		this.id = id;
 		this.manufacturer = manufacturer;
 		this.date = date;
 		this.quantity = quantity;
@@ -174,32 +176,32 @@ class Medicine {
 
 //DECLARING THE LIQUID CLASS
 class Liquid extends Medicine {
-	constructor(name, id, manufacturer, date, quantity, type){
-		super(name, id, manufacturer, date, quantity, type);
+	constructor(name, manufacturer, date, quantity, type){
+		super(name, manufacturer, date, quantity, type);
 		this.ID = Date.now();
 	}
 }
 
 //DECLARING THE TABLET CLASS
 class Tablet extends Medicine {
-	constructor(name, id, manufacturer, date, quantity, type){
-		super(name, id, manufacturer, date, quantity, type);
+	constructor(name, manufacturer, date, quantity, type){
+		super(name, manufacturer, date, quantity, type);
 		this.ID = Date.now();
 	}
 }
 
 //DECLARING THE CAPSULE CLASS
 class Capsule extends Medicine {
-	constructor(name, id, manufacturer, date, quantity, type){
-		super(name, id, manufacturer, date, quantity, type);
+	constructor(name, manufacturer, date, quantity, type){
+		super(name, manufacturer, date, quantity, type);
 		this.ID = Date.now();
 	}
 }
 
 //DECLARING THE TOPICAL CLASS
 class Topical extends Medicine {
-	constructor(name, id, manufacturer, date, quantity, type){
-		super(name, id, manufacturer, date, quantity, type);
+	constructor(name, manufacturer, date, quantity, type){
+		super(name, manufacturer, date, quantity, type);
 		this.ID = Date.now();
 	}
 }
@@ -243,7 +245,6 @@ class UI {
 			const displayMedicineInfo = document.createElement('div');
 			const listDiv = document.createElement('div');
 			const renderedName = document.createElement('span');
-			const renderedID = document.createElement('span');
 			const renderedManufacturer = document.createElement('span');
 			const renderedDate = document.createElement('span');
 			const renderedQuantity = document.createElement('span');
@@ -257,15 +258,14 @@ class UI {
 
 			// SETTING THE CONTENT
 			renderedName.textContent = `Product name: ${medicine.name}`;
-			renderedID.textContent = `Product ID: ${medicine.id}`;
 			renderedManufacturer.textContent = `Manufacturer: ${medicine.manufacturer}`;
 			renderedDate.textContent = `Expiration date: ${medicine.date}`;
 			renderedQuantity.textContent = `Quantity: ${medicine.quantity}`;
 			renderedType.textContent = `Type of medicine: ${medicine.type}`;
 			updateButton.textContent = 'Update';
-			penImage.src = `./assets/pen-sharp-regular.svg`;
+			penImage.src = `../src/assets/pen-sharp-regular.svg`;
 			deleteButton.textContent = 'Delete';
-			trashCan.src = `./assets/trash-sharp-regular.svg`;
+			trashCan.src = `../src/assets/trash-sharp-regular.svg`;
 
 			// ADDING THE CLASSES
 			displayMedicineInfo.classList.add('display-info');
@@ -281,7 +281,7 @@ class UI {
 			// APPEND THE ELEMENTS
 			displayMedicine.append(displayMedicineInfo);
 			displayMedicineInfo.append(listDiv, buttonContainer);
-			listDiv.append(renderedName, renderedID, renderedManufacturer, renderedDate, renderedQuantity, renderedType);
+			listDiv.append(renderedName, renderedManufacturer, renderedDate, renderedQuantity, renderedType);
 			buttonContainer.append(updateButton, deleteButton);
 			deleteButton.append(trashCan);
 			updateButton.append(penImage);
@@ -296,44 +296,128 @@ class UI {
 	}
 }
 
-lkjsdflk
 
-// //SELECTING THE ERROR ELEMENT
-// const nameErrorElement = document.querySelector('.name-error-message');
-// const idErrorElement = document.querySelector('.id-error-message');
-// const manufacturerErrorElement = document.querySelector('.manufacturer-error-message');
-// const dateErrorElement = document.querySelector('.date-error-message');
-// const quantityErrorElement = document.querySelector('.quantity-error-message');
+//SELECTING THE ERROR ELEMENT
+const nameErrorElement = document.querySelector('.name-error-message');
+const manufacturerErrorElement = document.querySelector('.manufacturer-error-message');
+const dateErrorElement = document.querySelector('.date-error-message');
+const quantityErrorElement = document.querySelector('.quantity-error-message');
 
-// // FORM VALIDATION
-// const validateMedicineForm = (name, id, manufacturer, date, quantity, nameErrorElement, idErrorElement, manufacturerErrorElement, dateErrorElement, quantityErrorElement) => {
-// 	const errors = {
-// 		errorStatus: false, 
-// 		nameError: '',
-// 		idError: '',
-// 		manufacturerError: '',
-// 		dateError: '',
-// 		quantityError: '',
-// 	}
+// FORM VALIDATION
+const validateMedicineForm = (name, manufacturer, date, quantity, nameErrorElement, manufacturerErrorElement, dateErrorElement, quantityErrorElement) => {
+	const errors = {
+		errorStatus: false, 
+		nameError: '',
+		manufacturerError: '',
+		dateError: '',
+		quantityError: '',
+	}
 
-// 	if (!name && !id && !manufacturer && !date && !quantity) {
-// 		errors.errorStatus = true,
-// 		errors.nameError = 'Product name is required ⚠️',
-// 		errors.idError = 'Product ID is required ⚠️',
-// 		errors.manufacturerError = 'Manufacturer is required ⚠️',
-// 		errors.dateError = 'Expiration date is required ⚠️',
-// 		errors.quantityError = 'Quanitity is required ⚠️',
+	if (!name && !manufacturer && !date && !quantity) {
+		errors.errorStatus = true,
+		errors.nameError = 'Product name is required ⚠️',
+		errors.manufacturerError = 'Manufacturer is required ⚠️',
+		errors.dateError = 'Expiration date is required ',
+		errors.quantityError = 'Quanitity is required ⚠️',
 
-// 		nameErrorElement.style.visibility = 'visible';
-// 		idErrorElement.style.visibility = 'visible';
-// 		manufacturerErrorElement.style.visibility = 'visible';
-// 		dateErrorElement.style.visibility = 'visible';
-// 		quantityErrorElement.style.visibility = 'visible';
+		nameErrorElement.style.visibility = 'visible';
+		manufacturerErrorElement.style.visibility = 'visible';
+		dateErrorElement.style.visibility = 'visible';
+		quantityErrorElement.style.visibility = 'visible';
 
-// 		nameErrorElement.textContent = errors.nameError;
-// 		idErrorElement.textContent = errors.idError;
-// 		manufacturerErrorElement.textContent = errors.manufacturerError;
-// 		dateErrorElement.textContent = errors.dateError;
-// 		quantityErrorElement.textContent = errors.quantityError
-// 	}
-// }
+		nameErrorElement.textContent = errors.nameError;
+		manufacturerErrorElement.textContent = errors.manufacturerError;
+		dateErrorElement.textContent = errors.dateError;
+		quantityErrorElement.textContent = errors.quantityError;
+
+	} else if (!name) {
+		errors.errorStatus = true,
+		errors.nameError = 'Product name is required ⚠️',
+		errors.manufacturerError = '',
+		errors.dateError = '',
+		errors.quantityError = '',
+
+		nameErrorElement.style.visibility = 'visible';
+		manufacturerErrorElement.style.visibility = 'hidden';
+		dateErrorElement.style.visibility = 'hidden';
+		quantityErrorElement.style.visibility = 'hidden';
+
+		nameErrorElement.textContent = errors.nameError;
+		manufacturerErrorElement.textContent = errors.manufacturerError;
+		dateErrorElement.textContent = errors.dateError;
+		quantityErrorElement.textContent = errors.quantityError;
+
+	} else if (!manufacturer) {
+		errors.errorStatus = true,
+		errors.nameError = '',
+		errors.manufacturerError = 'Manufacturer is required ⚠️',
+		errors.dateError = '',
+		errors.quantityError = '',
+
+		nameErrorElement.style.visibility = 'hidden';
+		manufacturerErrorElement.style.visibility = 'visible';
+		dateErrorElement.style.visibility = 'hidden';
+		quantityErrorElement.style.visibility = 'hidden';
+
+		nameErrorElement.textContent = errors.nameError;
+		manufacturerErrorElement.textContent = errors.manufacturerError;
+		dateErrorElement.textContent = errors.dateError;
+		quantityErrorElement.textContent = errors.quantityError;
+
+	} else if (!date) {
+		errors.errorStatus = true,
+		errors.nameError = '',
+		errors.manufacturerError = '',
+		errors.dateError = 'Expiration date is required ⚠️',
+		errors.quantityError = '',
+
+		nameErrorElement.style.visibility = 'hidden';
+		manufacturerErrorElement.style.visibility = 'hidden';
+		dateErrorElement.style.visibility = 'visible';
+		quantityErrorElement.style.visibility = 'hidden';
+
+		nameErrorElement.textContent = errors.nameError;
+		manufacturerErrorElement.textContent = errors.manufacturerError;
+		dateErrorElement.textContent = errors.dateError;
+		quantityErrorElement.textContent = errors.quantityError;
+
+	} else if (!quantity) {
+		errors.errorStatus = true,
+		errors.nameError = '',
+		errors.manufacturerError = '',
+		errors.dateError = '',
+		errors.quantityError = 'Quantity is required ⚠️',
+
+		nameErrorElement.style.visibility = 'hidden';
+		manufacturerErrorElement.style.visibility = 'hidden';
+		dateErrorElement.style.visibility = 'hidden';
+		quantityErrorElement.style.visibility = 'visible';
+
+		nameErrorElement.textContent = errors.nameError;
+		manufacturerErrorElement.textContent = errors.manufacturerError;
+		dateErrorElement.textContent = errors.dateError;
+		quantityErrorElement.textContent = errors.quantityError;
+	} else {
+		errors.errorStatus = false,
+		errors.nameError = '',
+		errors.manufacturerError = '',
+		errors.dateError = '',
+		errors.quantityError = '',
+
+		nameErrorElement.style.visibility = 'hidden';
+		manufacturerErrorElement.style.visibility = 'hidden';
+		dateErrorElement.style.visibility = 'hidden';
+		quantityErrorElement.style.visibility = 'hidden';
+
+		nameErrorElement.textContent = errors.nameError;
+		manufacturerErrorElement.textContent = errors.manufacturerError;
+		dateErrorElement.textContent = errors.dateError;
+		quantityErrorElement.textContent = errors.quantityError;
+	}
+	const medicineFormStatus = () => {
+		return errors.errorStatus
+	}
+	return {medicineFormStatus}
+}
+
+// export {validateMedicineForm}

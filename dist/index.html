@@ -7,6 +7,7 @@
 
 	<link rel="stylesheet" href="../src/css/reset.css">
 	<link rel="stylesheet" href="../src/css/style.css">
+	<link rel="stylesheet" href="../src/css/media-queries.css">
 </head>
 <body>
 	<!-- HEADER -->
@@ -20,39 +21,37 @@
 		</div>
 	</header>
 
+	
 	<div class="main-container">
-		
 		<!-- FORM SECTION -->
+	
 		<form class="pharmacy-form">
 			
-			<label for="product-name">Product Name *</label>
-			<input type="text" name="product-name" class="product-name" required>
+			<label for="product-name">Product Name<sup>*</sup></label>
+			<input type="text" name="product-name" class="product-name">
 			<label for="form-error-message" class="name-error-message">Please fill in the missing information</label>
 
-			<label for="product-id">Product ID *</label>
-			<input type="text" name="product-id" class="product-id" required>
-			<label for="form-error-message" class="id-error-message">Please fill in the missing information</label>
-
-			<label for="manufacturer">Manufacturer *</label>
-			<input type="text" name="manufacturer" class="manufacturer" required>
+			<label for="manufacturer">Manufacturer<sup>*</sup></label>
+			<input type="text" name="manufacturer" class="manufacturer">
 			<label for="form-error-message" class="manufacturer-error-message">Please fill in the missing information</label>
 
-			<label for="expiration-date">Expiration Date *</label>
-			<input type="date" name="expiration-date" class="expiration-date" required>
+			<label for="expiration-date">Expiration Date<sup>*</sup></label>
+			<input type="date" name="expiration-date" class="expiration-date">
 			<label for="form-error-message" class="date-error-message">Please fill in the missing information</label>
 
-			<label for="quantity">Quantity *</label>
-			<input type="number" name="quantity" class="quantity" required>
+			<label for="quantity">Quantity<sup>*</sup></label>
+			<input type="number" name="quantity" class="quantity">
 			<label for="form-error-message" class="quantity-error-message">Please fill in the missing information</label>
 
-			<label for="medicine-type">Medicine Type *</label>
-			<select name="medicine-type" class="medicine-type" required>
+			<label for="medicine-type">Medicine Type<sup>*</sup></label>
+			<select name="medicine-type" class="medicine-type">
 				<option value="liquid">Liquid</option>
 				<option value="tablet">Tablet</option>
 				<option value="capsule">Capsule</option>
 				<option value="topical">Topical</option>
 			</select>
 			<button type="submit" class="submit-button">Register Medicine</button>
+			<!-- <label for="success-message">The product was successfully added</label> -->
 		</form>
 
 		<!-- DISPLAY MEDICINE SECTION -->

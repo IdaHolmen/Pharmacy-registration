@@ -75,8 +75,7 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 0.6rem;
-	margin-left: 1rem;
+	gap: 0.6rem;	
 	border-radius: 0.25rem;
 	background-color: white;
 }
@@ -95,7 +94,7 @@ body {
 .quantity-error-message {
 	font-size: 0.8rem;
 	color: red;
-	visibility: hidden;
+	opacity: 0;
 }
 
 sup {
@@ -110,7 +109,7 @@ sup {
 }
 
 .submit-button {
-	margin: 2rem;
+	margin-top: 1.5rem;
 	width: 10rem;
 	height: 2rem;
 	color: #1d3557;
@@ -124,10 +123,14 @@ sup {
 	background-color: #1d3557;
 }
 
-.submit-button:active {
-	transition: none;
-	background-color: #439CD4;
+.submit-button--success {
+	background-color: green;
 	border: none;
+	color: white;
+}
+
+.submit-button--success:hover {
+	background-color: green;
 }
 
 
@@ -171,6 +174,7 @@ sup {
 .display-info {
 	width: 90%;
 	height: 10rem;
+	margin-bottom: 1rem;
 	display: flex;
 	background: rgba(255, 255, 255, 0.798);
 	border-radius: 0.25rem;

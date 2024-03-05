@@ -35,7 +35,7 @@ const renderTopicalMedicineButton = document.querySelector('.render-topicals-but
 const navigateToRegistrationButton = document.querySelector('.navigate-to-form-button');
 const navigateToDisplayPageButton = document.querySelector('.navigate-to-display-button');
 
-
+const submitButton = document.querySelector('.submit-button');
 //ADDING EVENT LISTENERS
 
 navigateToRegistrationButton.addEventListener('click', (e)=> {
@@ -108,6 +108,15 @@ pharmacyForm.addEventListener('submit', (e)=> {
 		}
 		Liquid.addMedicine(newMedicine);
 		console.log(newMedicine);
+
+		submitButton.classList.add('submit-button--success');
+        submitButton.textContent = '✓ Added';
+
+		setTimeout(() => {
+            submitButton.classList.remove('submit-button--success');
+            submitButton.textContent = 'Register Medicine';
+        }, 2000);
+
 		pharmacyForm.reset();
 	} else {
 		console.log('Form validation failed.');

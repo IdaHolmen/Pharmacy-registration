@@ -69,7 +69,7 @@ body {
 
 /* REGISTRATION FORM */
 .pharmacy-form {
-	flex-basis: 45%;
+	width: 50%;
 	height: 95%;
 	display: flex;
 	flex-direction: column;
@@ -109,7 +109,7 @@ sup {
 }
 
 .submit-button {
-	margin-top: 1.5rem;
+	margin-top: 1rem;
 	width: 10rem;
 	height: 2rem;
 	color: #1d3557;
@@ -141,14 +141,14 @@ sup {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	flex-basis: 65%;
+	width: 90%;
 	height: 100%;
 	display: none;
 }
 
 .select-list-button-container {
 	flex-basis: 14%;
-	width: 90%;
+	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -183,6 +183,7 @@ sup {
 .medicine-div {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	height: 100%;
 	flex-basis: 80%;
 	margin-bottom: 0.5rem;
@@ -197,7 +198,7 @@ sup {
 	width: 12rem;
 	height: 2rem;
 	border-radius: 0.25rem;
-	font-size: small;
+	font-size: 1.1rem;
 	font-weight: bold;
 	background-color: #1d3557;
 	color: white;
@@ -221,7 +222,7 @@ sup {
 	background-color: white;
 	color: #1d3557;
 	border: 2px solid #1d3557;
-	font-size: small;
+	font-size: 1.1rem;
 	font-weight: bold;
 	margin: 0 0.5rem;
 }
@@ -246,6 +247,7 @@ sup {
 	position: relative;
 	width: 6rem;
 	height: 2rem;
+	margin: 0.5rem;
 	border-radius: 0.25rem;
 	border: 2px solid rgb(231, 50, 50);
 	background-color: #fff;
@@ -275,6 +277,7 @@ sup {
 	position: relative;
 	width: 6rem;
 	height: 2rem;
+	margin: 0.5rem;
 	border-radius: 0.25rem;
 	border: 2px solid rgb(56, 138, 38);
 	background-color: #fff;

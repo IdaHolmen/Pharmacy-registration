@@ -1,0 +1,92 @@
+@media screen and (max-width: 1150px) and (max-height: 700px){
+	.main-container {
+		flex-basis: 92%;
+	}
+
+	.navigation-header {
+		flex-basis: 8%;
+	}
+
+	.pharmacy-form {
+		width: 75%;
+		gap: 0.3rem;
+	}
+
+	.headline-section {
+		display: none;
+	}
+
+	.navigation-button-container {
+		height: 100%;
+	}
+}
+
+@media screen and (max-width: 1150px) {
+	.pharmacy-form {
+		width: 75%;
+	}
+	
+}
+
+@media screen and (max-width: 850px) {
+	.select-list-button-container {
+		flex-basis: 20%;
+		gap: 0.5rem;
+	}
+
+	.display-medicine-container {
+		flex-basis: 80%;
+	}
+
+	.render-liquids-button, 
+	.render-tablets-button, 
+	.render-capsules-button, 
+	.render-topicals-button	{
+		width: 8rem;
+		font-size: small;
+	}
+
+	.render-liquids-button--active:hover, 
+	.render-tablets-button--active:hover, 
+	.render-capsules-button--active:hover, 
+	.render-topicals-button--active:hover {
+		font-size: small;
+	}
+}
+
+@media screen and (max-width: 530px) {
+	.pharmacy-form {
+		width: 95%;
+	}
+
+	.main-container {
+		flex-basis: 92%;
+	}
+
+	.navigation-header {
+		flex-basis: 8%;
+	}
+
+	.headline-section {
+		display: none;
+	}
+
+	.navigation-button-container {
+		height: 100%;
+	}
+
+	.display-info {
+		flex-direction: column;
+		align-items: center;
+		height: 14rem;
+		width: 95%;
+	}
+
+	.medicine-div {
+		font-size: 1rem;
+	}
+
+	.button-container {
+		flex-direction: row;
+	}
+}

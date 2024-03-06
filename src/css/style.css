@@ -94,7 +94,7 @@ body {
 .quantity-error-message {
 	font-size: 0.8rem;
 	color: red;
-	opacity: 0;
+	visibility: hidden;
 }
 
 sup {

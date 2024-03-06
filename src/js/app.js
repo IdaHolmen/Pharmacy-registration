@@ -1,3 +1,5 @@
+import { validateMedicineForm } from './formValidation';
+
 // LOCAL STORAGE
 const saveToLocalStorage = (key, value) => {
 	localStorage.setItem(key, JSON.stringify(value));
@@ -23,7 +25,6 @@ const date = document.querySelector('.expiration-date');
 const quantity = document.querySelector('.quantity');
 const selectElement = document.querySelector('.medicine-type');
 
-const displayMedicineContainer = document.querySelector('.display-medicine-container');
 const displayMedicine = document.querySelector('.display-medicine');
 const emptyContentContainer = document.querySelector('.content-empty-text');
 
@@ -36,6 +37,13 @@ const navigateToRegistrationButton = document.querySelector('.navigate-to-form-b
 const navigateToDisplayPageButton = document.querySelector('.navigate-to-display-button');
 
 const submitButton = document.querySelector('.submit-button');
+
+//SELECTING THE ERROR ELEMENT
+const nameErrorElement = document.querySelector('.name-error-message');
+const manufacturerErrorElement = document.querySelector('.manufacturer-error-message');
+const dateErrorElement = document.querySelector('.date-error-message');
+const quantityErrorElement = document.querySelector('.quantity-error-message');
+
 //ADDING EVENT LISTENERS
 
 navigateToRegistrationButton.addEventListener('click', (e)=> {
@@ -68,9 +76,8 @@ navigateToDisplayPageButton.addEventListener('click', (e)=> {
 pharmacyForm.addEventListener('submit', (e)=> {
 	e.preventDefault();
 
-	const validationResult = validateMedicineForm(productName.value, manufacturer.value, date.value,quantity.value, nameErrorElement, manufacturerErrorElement, dateErrorElement, quantityErrorElement);
-
-	if (!validationResult.medicineFormStatus()) {
+	const {medicineFormStatus} = validateMedicineForm(productName.value, manufacturer.value, date.value,quantity.value, nameErrorElement, manufacturerErrorElement, dateErrorElement, quantityErrorElement);
+	if (!medicineFormStatus()) {
 		let newMedicine;
 
 		if(selectElement.value === 'liquid') {
@@ -304,129 +311,3 @@ class UI {
 		});	
 	}
 }
-
-
-//SELECTING THE ERROR ELEMENT
-const nameErrorElement = document.querySelector('.name-error-message');
-const manufacturerErrorElement = document.querySelector('.manufacturer-error-message');
-const dateErrorElement = document.querySelector('.date-error-message');
-const quantityErrorElement = document.querySelector('.quantity-error-message');
-
-// FORM VALIDATION
-const validateMedicineForm = (name, manufacturer, date, quantity, nameErrorElement, manufacturerErrorElement, dateErrorElement, quantityErrorElement) => {
-	const errors = {
-		errorStatus: false, 
-		nameError: '',
-		manufacturerError: '',
-		dateError: '',
-		quantityError: '',
-	}
-
-	if (!name && !manufacturer && !date && !quantity) {
-		errors.errorStatus = true,
-		errors.nameError = 'Product name is required ⚠️',
-		errors.manufacturerError = 'Manufacturer is required ⚠️',
-		errors.dateError = 'Expiration date is required ',
-		errors.quantityError = 'Quanitity is required ⚠️',
-
-		nameErrorElement.style.visibility = 'visible';
-		manufacturerErrorElement.style.visibility = 'visible';
-		dateErrorElement.style.visibility = 'visible';
-		quantityErrorElement.style.visibility = 'visible';
-
-		nameErrorElement.textContent = errors.nameError;
-		manufacturerErrorElement.textContent = errors.manufacturerError;
-		dateErrorElement.textContent = errors.dateError;
-		quantityErrorElement.textContent = errors.quantityError;
-
-	} else if (!name) {
-		errors.errorStatus = true,
-		errors.nameError = 'Product name is required ⚠️',
-		errors.manufacturerError = '',
-		errors.dateError = '',
-		errors.quantityError = '',
-
-		nameErrorElement.style.visibility = 'visible';
-		manufacturerErrorElement.style.visibility = 'hidden';
-		dateErrorElement.style.visibility = 'hidden';
-		quantityErrorElement.style.visibility = 'hidden';
-
-		nameErrorElement.textContent = errors.nameError;
-		manufacturerErrorElement.textContent = errors.manufacturerError;
-		dateErrorElement.textContent = errors.dateError;
-		quantityErrorElement.textContent = errors.quantityError;
-
-	} else if (!manufacturer) {
-		errors.errorStatus = true,
-		errors.nameError = '',
-		errors.manufacturerError = 'Manufacturer is required ⚠️',
-		errors.dateError = '',
-		errors.quantityError = '',
-
-		nameErrorElement.style.visibility = 'hidden';
-		manufacturerErrorElement.style.visibility = 'visible';
-		dateErrorElement.style.visibility = 'hidden';
-		quantityErrorElement.style.visibility = 'hidden';
-
-		nameErrorElement.textContent = errors.nameError;
-		manufacturerErrorElement.textContent = errors.manufacturerError;
-		dateErrorElement.textContent = errors.dateError;
-		quantityErrorElement.textContent = errors.quantityError;
-
-	} else if (!date) {
-		errors.errorStatus = true,
-		errors.nameError = '',
-		errors.manufacturerError = '',
-		errors.dateError = 'Expiration date is required ⚠️',
-		errors.quantityError = '',
-
-		nameErrorElement.style.visibility = 'hidden';
-		manufacturerErrorElement.style.visibility = 'hidden';
-		dateErrorElement.style.visibility = 'visible';
-		quantityErrorElement.style.visibility = 'hidden';
-
-		nameErrorElement.textContent = errors.nameError;
-		manufacturerErrorElement.textContent = errors.manufacturerError;
-		dateErrorElement.textContent = errors.dateError;
-		quantityErrorElement.textContent = errors.quantityError;
-
-	} else if (!quantity) {
-		errors.errorStatus = true,
-		errors.nameError = '',
-		errors.manufacturerError = '',
-		errors.dateError = '',
-		errors.quantityError = 'Quantity is required ⚠️',
-
-		nameErrorElement.style.visibility = 'hidden';
-		manufacturerErrorElement.style.visibility = 'hidden';
-		dateErrorElement.style.visibility = 'hidden';
-		quantityErrorElement.style.visibility = 'visible';
-
-		nameErrorElement.textContent = errors.nameError;
-		manufacturerErrorElement.textContent = errors.manufacturerError;
-		dateErrorElement.textContent = errors.dateError;
-		quantityErrorElement.textContent = errors.quantityError;
-	} else {
-		errors.errorStatus = false,
-		errors.nameError = '',
-		errors.manufacturerError = '',
-		errors.dateError = '',
-		errors.quantityError = '',
-
-		nameErrorElement.style.visibility = 'hidden';
-		manufacturerErrorElement.style.visibility = 'hidden';
-		dateErrorElement.style.visibility = 'hidden';
-		quantityErrorElement.style.visibility = 'hidden';
-
-		nameErrorElement.textContent = errors.nameError;
-		manufacturerErrorElement.textContent = errors.manufacturerError;
-		dateErrorElement.textContent = errors.dateError;
-		quantityErrorElement.textContent = errors.quantityError;
-	}
-	const medicineFormStatus = () => {
-		return errors.errorStatus
-	}
-	return {medicineFormStatus}
-}
-
-// export {validateMedicineForm}

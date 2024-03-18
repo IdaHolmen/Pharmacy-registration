@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+:root {
+	/*FONT*/
+	--font-family: "Lato", sans-serif;
+
+	/*FONT SIZE*/
+	--font-size-small: 0.8rem;
+	--font-size-base: 1rem;
+	--font-size-plus: 1.1rem;
+
+	/*COLORS*/
+	--background-color-primary: #d0f4de;
+	--background-color-secondary: #a9def9;
+	--background-heading: #1d3557;
+	--color-primary: white;
+	--color-info-box: rgba(255, 255, 255, 0.798); 
+	--color-accent: red;
+	--color-accent-2: green;
+	--filter-button-hover: #439CD4;
+	--nav-button-hover: rgb(224, 224, 224);
+	--delete-button-color: rgb(231, 50, 50);
+	--delete-button-hover: rgb(245, 207, 207);
+
+	/*BORDERS*/
+	--border-grey: 0.5px solid grey;
+	--submit-button-border: 2px solid var(--background-heading);
+	--delete-button-border: 2px solid var(--delete-button-color);
+
+	/*BORDER RADIUS*/
+	--border-radius-normal: 0.25rem;
+
+	/*SPACING*/
+	--spacing-tiny: 0.3rem;
+	--spacing-small: 0.5rem;
+	--spacing-small-plus: 0.6rem;
+	--spacing-normal: 1rem;
+	--spacing-medium: 1.5rem;
+	--spacing-medium-large: 2rem;
+	--spacing-large: 6rem;
+	--spacing-xlarge: 10rem;
+	--spacing-xxlarge: 12rem;
+}

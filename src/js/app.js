@@ -26,6 +26,7 @@ const quantity = document.querySelector('.quantity');
 const selectElement = document.querySelector('.medicine-type');
 
 const displayMedicine = document.querySelector('.display-medicine');
+const displayMedicineContainer = document.querySelector('.display-medicine-container');
 const emptyContentContainer = document.querySelector('.content-empty-text');
 
 const renderLiquidMedicineButton = document.querySelector('.render-liquids-button');
@@ -37,6 +38,9 @@ const navigateToRegistrationButton = document.querySelector('.navigate-to-form-b
 const navigateToDisplayPageButton = document.querySelector('.navigate-to-display-button');
 
 const submitButton = document.querySelector('.submit-button');
+
+const updateFormContainer = document.querySelector('.update-form-container');
+const exitButton = document.querySelector('.exit-update-form-button');
 
 //SELECTING THE ERROR ELEMENT
 const nameErrorElement = document.querySelector('.name-error-message');
@@ -229,6 +233,7 @@ const removeAllChildNodes = (parent) => {
 	}
 }
 
+
 // DECLARE THE UI CLASS
 class UI {
 	static activeTab = 'liquid';
@@ -269,8 +274,6 @@ class UI {
 			const buttonContainer = document.createElement('div');
 			const deleteButton = document.createElement('button');
 			const trashCan = document.createElement('img');
-			const updateButton = document.createElement('button');
-			const penImage = document.createElement('img');
 
 			// SETTING THE CONTENT
 			renderedName.textContent = `Product name: ${medicine.name}`;
@@ -278,8 +281,6 @@ class UI {
 			renderedDate.textContent = `Expiration date: ${medicine.date}`;
 			renderedQuantity.textContent = `Quantity: ${medicine.quantity}`;
 			renderedType.textContent = `Type of medicine: ${medicine.type}`;
-			updateButton.textContent = 'Update';
-			penImage.src = `../src/assets/pen-sharp-regular.svg`;
 			deleteButton.textContent = 'Delete';
 			trashCan.src = `../src/assets/trash-sharp-regular.svg`;
 
@@ -289,8 +290,6 @@ class UI {
 			buttonContainer.classList.add('button-container');
 			deleteButton.classList.add('delete-button');
 			trashCan.classList.add('trash-can-image');
-			updateButton.classList.add('update-button');
-			penImage.classList.add('pen-image');
 
 			listDiv.dataset.id = medicine.ID;
 
@@ -298,9 +297,8 @@ class UI {
 			displayMedicine.append(displayMedicineInfo);
 			displayMedicineInfo.append(listDiv, buttonContainer);
 			listDiv.append(renderedName, renderedManufacturer, renderedDate, renderedQuantity, renderedType);
-			buttonContainer.append(updateButton, deleteButton);
+			buttonContainer.append(deleteButton);
 			deleteButton.append(trashCan);
-			updateButton.append(penImage);
 
 			// DELETE BUTTON
 			deleteButton.addEventListener('click', (e) => {
@@ -308,6 +306,7 @@ class UI {
 				const rowID = medicine.ID;
 				Medicine.deleteMedicine(rowID, medicines);
 			})
-		});	
+ 		});	
 	}
 }
+

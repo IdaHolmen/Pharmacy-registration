@@ -1,15 +1,15 @@
-import { validateMedicineForm } from './formValidation';
+import {validateMedicineForm} from './formValidation';
 
 // LOCAL STORAGE
 const saveToLocalStorage = (key, value) => {
 	localStorage.setItem(key, JSON.stringify(value));
-}
+};
 
 const getFromLocalStorage = (key) => {
 	const savedInfoJSON = localStorage.getItem(key);
 	const savedObject = JSON.parse(savedInfoJSON);
 	return savedObject;
-}
+};
 
 let medicines = getFromLocalStorage('medicinesArray') ?? [];
 
@@ -26,16 +26,30 @@ const quantity = document.querySelector('.quantity');
 const selectElement = document.querySelector('.medicine-type');
 
 const displayMedicine = document.querySelector('.display-medicine');
-const displayMedicineContainer = document.querySelector('.display-medicine-container');
+const displayMedicineContainer = document.querySelector(
+	'.display-medicine-container'
+);
 const emptyContentContainer = document.querySelector('.content-empty-text');
 
-const renderLiquidMedicineButton = document.querySelector('.render-liquids-button');
-const renderTabletMedicineButton = document.querySelector('.render-tablets-button');
-const renderCapsuleMedicineButton = document.querySelector('.render-capsules-button');
-const renderTopicalMedicineButton = document.querySelector('.render-topicals-button');
+const renderLiquidMedicineButton = document.querySelector(
+	'.render-liquids-button'
+);
+const renderTabletMedicineButton = document.querySelector(
+	'.render-tablets-button'
+);
+const renderCapsuleMedicineButton = document.querySelector(
+	'.render-capsules-button'
+);
+const renderTopicalMedicineButton = document.querySelector(
+	'.render-topicals-button'
+);
 
-const navigateToRegistrationButton = document.querySelector('.navigate-to-form-button');
-const navigateToDisplayPageButton = document.querySelector('.navigate-to-display-button');
+const navigateToRegistrationButton = document.querySelector(
+	'.navigate-to-form-button'
+);
+const navigateToDisplayPageButton = document.querySelector(
+	'.navigate-to-display-button'
+);
 
 const submitButton = document.querySelector('.submit-button');
 
@@ -44,17 +58,21 @@ const exitButton = document.querySelector('.exit-update-form-button');
 
 //SELECTING THE ERROR ELEMENT
 const nameErrorElement = document.querySelector('.name-error-message');
-const manufacturerErrorElement = document.querySelector('.manufacturer-error-message');
+const manufacturerErrorElement = document.querySelector(
+	'.manufacturer-error-message'
+);
 const dateErrorElement = document.querySelector('.date-error-message');
 const quantityErrorElement = document.querySelector('.quantity-error-message');
 
 //ADDING EVENT LISTENERS
 
-navigateToRegistrationButton.addEventListener('click', (e)=> {
+navigateToRegistrationButton.addEventListener('click', (e) => {
 	e.preventDefault();
 	navigateToRegistrationButton.classList.add('navigate-to-form-button--active');
 
-	navigateToDisplayPageButton.classList.remove('navigate-to-display-button--active');
+	navigateToDisplayPageButton.classList.remove(
+		'navigate-to-display-button--active'
+	);
 
 	mainContainer.style.backgroundColor = '#d0f4de';
 	pharmacyForm.style.display = 'flex';
@@ -62,71 +80,83 @@ navigateToRegistrationButton.addEventListener('click', (e)=> {
 	headerText.textContent = 'Ready to Register some Medicines?';
 });
 
-navigateToDisplayPageButton.addEventListener('click', (e)=> {
+navigateToDisplayPageButton.addEventListener('click', (e) => {
 	e.preventDefault();
-	navigateToDisplayPageButton.classList.add('navigate-to-display-button--active');
+	navigateToDisplayPageButton.classList.add(
+		'navigate-to-display-button--active'
+	);
 
-	navigateToRegistrationButton.classList.remove('navigate-to-form-button--active');
+	navigateToRegistrationButton.classList.remove(
+		'navigate-to-form-button--active'
+	);
 
 	mainContainer.style.backgroundColor = '#a9def9';
 	pharmacyForm.style.display = 'none';
 	pharmacyList.style.display = 'flex';
 	headerText.textContent = 'Medicines';
 
-	renderLiquidMedicineButton.click()
+	renderLiquidMedicineButton.click();
 });
 
-
-pharmacyForm.addEventListener('submit', (e)=> {
+pharmacyForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 
-	const {medicineFormStatus} = validateMedicineForm(productName.value, manufacturer.value, date.value,quantity.value, nameErrorElement, manufacturerErrorElement, dateErrorElement, quantityErrorElement);
+	const {medicineFormStatus} = validateMedicineForm(
+		productName.value,
+		manufacturer.value,
+		date.value,
+		quantity.value,
+		nameErrorElement,
+		manufacturerErrorElement,
+		dateErrorElement,
+		quantityErrorElement
+	);
 	if (!medicineFormStatus()) {
 		let newMedicine;
 
-		if(selectElement.value === 'liquid') {
-		newMedicine = new Liquid (
-			productName.value,
-			manufacturer.value,
-			date.value,
-			quantity.value, 
-			selectElement.value
-		);
-		} else if(selectElement.value === 'tablet') {
-		newMedicine = new Tablet (
-			productName.value,
-			manufacturer.value,
-			date.value,
-			quantity.value, 
-			selectElement.value
-		);
-		} else if (selectElement.value === 'capsule'){
-		newMedicine = new Capsule (
-			productName.value,
-			manufacturer.value,
-			date.value,
-			quantity.value, 
-			selectElement.value
-		);
+		if (selectElement.value === 'liquid') {
+			newMedicine = new Liquid(
+				productName.value,
+				manufacturer.value,
+				date.value,
+				quantity.value,
+				selectElement.value
+			);
+		} else if (selectElement.value === 'tablet') {
+			newMedicine = new Tablet(
+				productName.value,
+				manufacturer.value,
+				date.value,
+				quantity.value,
+				selectElement.value
+			);
+		} else if (selectElement.value === 'capsule') {
+			newMedicine = new Capsule(
+				productName.value,
+				manufacturer.value,
+				date.value,
+				quantity.value,
+				selectElement.value
+			);
 		} else {
-		newMedicine = new Topical (
-			productName.value,
-			manufacturer.value,
-			date.value,
-			quantity.value, 
-			selectElement.value
-		);
+			newMedicine = new Topical(
+				productName.value,
+				manufacturer.value,
+				date.value,
+				quantity.value,
+				selectElement.value
+			);
 		}
 		Liquid.addMedicine(newMedicine);
 		console.log(newMedicine);
 
 		submitButton.classList.add('submit-button--success');
-        submitButton.textContent = '✓ Added';
+		submitButton.textContent = '✓ Added';
 
 		setTimeout(() => {
-            submitButton.classList.remove('submit-button--success');
-            submitButton.textContent = 'Register Medicine';
-        }, 2000);
+			submitButton.classList.remove('submit-button--success');
+			submitButton.textContent = 'Register Medicine';
+		}, 2000);
 
 		pharmacyForm.reset();
 	} else {
@@ -134,52 +164,55 @@ pharmacyForm.addEventListener('submit', (e)=> {
 	}
 });
 
-
-renderLiquidMedicineButton.addEventListener('click', ()=> {
+renderLiquidMedicineButton.addEventListener('click', () => {
 	UI.activeTab = 'liquid';
 	UI.renderMedicines(medicines, 'Liquid Medicines');
-	removeActiveClasses()
+	removeActiveClasses();
 	renderLiquidMedicineButton.classList.add('render-liquids-button--active');
-})
+});
 
-renderTabletMedicineButton.addEventListener('click', ()=> {
+renderTabletMedicineButton.addEventListener('click', () => {
 	UI.activeTab = 'tablet';
 	UI.renderMedicines(medicines, 'Tablet Medicines');
-	removeActiveClasses()
+	removeActiveClasses();
 	renderTabletMedicineButton.classList.add('render-tablets-button--active');
-})
+});
 
-renderCapsuleMedicineButton.addEventListener('click', ()=> {
+renderCapsuleMedicineButton.addEventListener('click', () => {
 	UI.activeTab = 'capsule';
 	UI.renderMedicines(medicines, 'Capsule Medicines');
-	removeActiveClasses()
+	removeActiveClasses();
 	renderCapsuleMedicineButton.classList.add('render-capsules-button--active');
-})
+});
 
-renderTopicalMedicineButton.addEventListener('click', ()=> {
+renderTopicalMedicineButton.addEventListener('click', () => {
 	UI.activeTab = 'topical';
 	UI.renderMedicines(medicines, 'Topical Medicines');
-	removeActiveClasses()
+	removeActiveClasses();
 	renderTopicalMedicineButton.classList.add('render-topicals-button--active');
-})
+});
 
 const removeActiveClasses = () => {
 	renderLiquidMedicineButton.classList.remove('render-liquids-button--active');
-    renderTabletMedicineButton.classList.remove('render-tablets-button--active');
-    renderCapsuleMedicineButton.classList.remove('render-capsules-button--active');
-	renderTopicalMedicineButton.classList.remove('render-topicals-button--active');
-}
+	renderTabletMedicineButton.classList.remove('render-tablets-button--active');
+	renderCapsuleMedicineButton.classList.remove(
+		'render-capsules-button--active'
+	);
+	renderTopicalMedicineButton.classList.remove(
+		'render-topicals-button--active'
+	);
+};
 
 // DECLARING THE MEDICINE CLASS
 class Medicine {
-	constructor(name, manufacturer, date, quantity, type){
+	constructor(name, manufacturer, date, quantity, type) {
 		this.name = name;
 		this.manufacturer = manufacturer;
 		this.date = date;
 		this.quantity = quantity;
 		this.type = type;
 		this.ID = Date.now();
-	} 
+	}
 	static addMedicine(medicine) {
 		medicines.push(medicine);
 		saveToLocalStorage('medicinesArray', medicines);
@@ -187,7 +220,9 @@ class Medicine {
 
 	//DELETE METHOD
 	static deleteMedicine(id, medicinesArray) {
-		const updateMedicineList = medicinesArray.filter(medicine => medicine.ID !== id);
+		const updateMedicineList = medicinesArray.filter(
+			(medicine) => medicine.ID !== id
+		);
 		medicines = updateMedicineList;
 		saveToLocalStorage('medicinesArray', medicines);
 		UI.renderMedicines(updateMedicineList, UI.activeTab);
@@ -196,7 +231,7 @@ class Medicine {
 
 //DECLARING THE LIQUID CLASS
 class Liquid extends Medicine {
-	constructor(name, manufacturer, date, quantity, type){
+	constructor(name, manufacturer, date, quantity, type) {
 		super(name, manufacturer, date, quantity, type);
 		this.ID = Date.now();
 	}
@@ -204,7 +239,7 @@ class Liquid extends Medicine {
 
 //DECLARING THE TABLET CLASS
 class Tablet extends Medicine {
-	constructor(name, manufacturer, date, quantity, type){
+	constructor(name, manufacturer, date, quantity, type) {
 		super(name, manufacturer, date, quantity, type);
 		this.ID = Date.now();
 	}
@@ -212,7 +247,7 @@ class Tablet extends Medicine {
 
 //DECLARING THE CAPSULE CLASS
 class Capsule extends Medicine {
-	constructor(name, manufacturer, date, quantity, type){
+	constructor(name, manufacturer, date, quantity, type) {
 		super(name, manufacturer, date, quantity, type);
 		this.ID = Date.now();
 	}
@@ -220,7 +255,7 @@ class Capsule extends Medicine {
 
 //DECLARING THE TOPICAL CLASS
 class Topical extends Medicine {
-	constructor(name, manufacturer, date, quantity, type){
+	constructor(name, manufacturer, date, quantity, type) {
 		super(name, manufacturer, date, quantity, type);
 		this.ID = Date.now();
 	}
@@ -231,37 +266,30 @@ const removeAllChildNodes = (parent) => {
 	while (parent && parent.firstChild) {
 		parent.removeChild(parent.firstChild);
 	}
-}
-
+};
 
 // DECLARE THE UI CLASS
 class UI {
 	static activeTab = 'liquid';
 	static renderMedicines(medicines, title) {
-	
 		// REMOVING ALL ELEMENTS FROM THE CONTAINER THAT DISPLAYS THE MEDICINES
-		removeAllChildNodes(displayMedicine)
+		removeAllChildNodes(displayMedicine);
 
-
-		const relevantMedicines = medicines.filter(medicine => medicine.type === UI.activeTab);
-		// WORKING ON CREATING AN ELEMENT ON TOP THAT SHOW HOW MANY MEDICINES ARE IN THE ARRAY
-		if (title) {
-			const pageTitle = document.createElement('h3');
-			pageTitle.textContent = `${title} (${relevantMedicines.length})`;
-			pageTitle.style.display = 'block';
-		}
+		const relevantMedicines = medicines.filter(
+			(medicine) => medicine.type === UI.activeTab
+		);
 
 		// IF THE MEDICINES ARE EMPTY
 		if (!relevantMedicines.length) {
 			emptyContentContainer.style.display = 'block';
 			emptyContentContainer.textContent = 'No medicines to show.';
-			displayMedicine.append(emptyContentContainer)
+			displayMedicine.append(emptyContentContainer);
 			return;
 		}
 
-		emptyContentContainer.style.display ='none';
+		emptyContentContainer.style.display = 'none';
 
-		relevantMedicines.forEach(medicine => {
+		relevantMedicines.forEach((medicine) => {
 			// CREATING THE ELEMENTS
 			const displayMedicineInfo = document.createElement('div');
 			const listDiv = document.createElement('div');
@@ -296,17 +324,22 @@ class UI {
 			// APPEND THE ELEMENTS
 			displayMedicine.append(displayMedicineInfo);
 			displayMedicineInfo.append(listDiv, buttonContainer);
-			listDiv.append(renderedName, renderedManufacturer, renderedDate, renderedQuantity, renderedType);
+			listDiv.append(
+				renderedName,
+				renderedManufacturer,
+				renderedDate,
+				renderedQuantity,
+				renderedType
+			);
 			buttonContainer.append(deleteButton);
 			deleteButton.append(trashCan);
 
 			// DELETE BUTTON
 			deleteButton.addEventListener('click', (e) => {
-				e.preventDefault()
+				e.preventDefault();
 				const rowID = medicine.ID;
 				Medicine.deleteMedicine(rowID, medicines);
-			})
- 		});	
+			});
+		});
 	}
 }
-

@@ -10,6 +10,7 @@ Link to GitHub Repository:
 https://github.com/IdaHolmen/Pharmacy-registration
 
 Link to the deployed Netlify site:
+https://keen-cat-293eab.netlify.app/
 
 <img width="1470" alt="Screenshot 2024-05-10 at 10 40 00" src="https://github.com/IdaHolmen/Pharmacy-registration/assets/143997448/5b21d3c0-7bc4-4860-afc7-f3fa4a1891fe">
 Registration form
